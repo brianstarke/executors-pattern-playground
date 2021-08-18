@@ -27,6 +27,8 @@ func (CreateFoo) TopicName() string {
 
 // Inmplement Executable
 func (c *CreateFoo) Do(ctx context.Context) error {
+	sugar.Info("doing the work of creating foo")
+
 	c.Result = &Foo{
 		ID:        "mock-001",
 		Bar:       c.Bar,
