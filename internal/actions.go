@@ -2,22 +2,14 @@ package internal
 
 import (
 	"context"
-	"log"
 )
 
-// Inmplement Executable
-func (c *CreateFoo) Do(ctx context.Context) error {
-	log.Printf("creating foo %s\n", c.Bar)
-	log.Printf("with context %#+v", ctx)
+type Foo struct {
+	ID  string
+	Bar string
+	Baz string
 
-	c.Result = &Foo{
-		ID:        "mock-001",
-		Bar:       c.Bar,
-		Baz:       c.Baz,
-		CreatedBy: ctx.Value(CKUserID).(string),
-	}
-
-	return nil
+	CreatedBy string
 }
 
 type CreateFoo struct {
@@ -29,10 +21,18 @@ type CreateFoo struct {
 	Result *Foo
 }
 
-type Foo struct {
-	ID  string
-	Bar string
-	Baz string
+func (CreateFoo) TopicName() string {
+	return "actions.createFoo"
+}
 
-	CreatedBy string
+// Inmplement Executable
+func (c *CreateFoo) Do(ctx context.Context) error {
+	c.Result = &Foo{
+		ID:        "mock-001",
+		Bar:       c.Bar,
+		Baz:       c.Baz,
+		CreatedBy: ctx.Value(CKUserID).(string),
+	}
+
+	return nil
 }

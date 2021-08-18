@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"log"
 
 	"starke.codes/epp/internal"
 )
@@ -20,6 +19,4 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
-	log.Printf("result %#+v\n", c)
 }
