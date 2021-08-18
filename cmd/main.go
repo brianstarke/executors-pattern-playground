@@ -8,8 +8,9 @@ import (
 )
 
 func main() {
-	c := &internal.CreateSomething{
-		Name: "Test Something",
+	c := &internal.CreateFoo{
+		Bar: "Apple",
+		Baz: "Christopher",
 	}
 
 	ctx := context.Background()
